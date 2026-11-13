@@ -35,8 +35,6 @@ CI/image publishing is intentionally outside this focused demo. The sample Guest
 .
 ├── README.md
 ├── .gitignore
-├── kind/                         # Optional local test cluster config
-│   └── kind-config.yaml
 ├── bootstrap/
 │   ├── guestbook.yaml
 │   └── demo-app.yaml
@@ -56,8 +54,7 @@ CI/image publishing is intentionally outside this focused demo. The sample Guest
 │   ├── deploy-apps.sh
 │   ├── verify.sh
 │   └── cleanup.sh
-└── article/
-    └── medium-article.md
+
 ```
 
 ## Prerequisites
