@@ -1,0 +1,19 @@
+# EXAMPLE SNIPPET ONLY.
+# Merge this data key into the existing argocd-cm ConfigMap.
+# Do not apply as a replacement for your existing argocd-cm.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cm
+  namespace: argocd
+data:
+  resource.customizations.health.example.com_Widget: |
+    hs = {}
+    hs.status = "Progressing"
+    hs.message = "Waiting for widget reconciliation"
+    if obj.metadata ~= nil and obj.metadata.deletionTimestamp ~= nil then
+      hs.status = "Progressing"
+      hs.message = "Resource is being deleted"
+      hs.deletionMessage = "Waiting for example.com/cleanup finalizer"
+    end
+    return hs

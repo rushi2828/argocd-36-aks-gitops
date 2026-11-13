@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: demo-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    # Replace <GITHUB_OWNER> with the owner of the repository hosting this project.
+    repoURL: https://github.com/rushi2828/argocd-36-aks-gitops.git
+    targetRevision: main
+    path: charts/demo-app
+    helm:
+      releaseName: demo-app
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: demo-app
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
